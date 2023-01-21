@@ -5,6 +5,11 @@ import time
 from django.db.models import Sum, Count, Avg, Min, Max, StdDev, Variance
 
 
+def intersection_view(request):
+    # 실습 안했음
+    return JsonResponse({'status':'intersection'})
+
+
 def shopw_view(request):
     # total_fruits = Fruits.objects.aggregate(Count('id'))
     # avg_fruits1 = Fruits.objects.aggregate(Avg('name'))
@@ -52,14 +57,6 @@ def shopw_view(request):
 
 
 def fruit_view(request):
-    # for a,b,c, in zip(range(0,100000), range(100000,200000), range(200000,300000)):
-    #     if not Fruits.objects.filter(name=a).exists():
-    #         Fruits.objects.create(name=a, price=b, grade=c)
-    #     else:
-    #     #     fruit = Fruits.objects.get(name=a)
-    #         print(a)
-    #         # print(f'{fruit.name} - {fruit.price} - {fruit.grade}')
-    print(len(Fruits.objects.all()))
     return JsonResponse({'status':'success'})
 
 
@@ -86,28 +83,13 @@ def fruit_view2(request):
     finish3 = time.time()
     print(finish3-start3)
 
-    # fruits_group_values = Fruits.objects.filter(group=1).values('name')
-    # for i in fruits_group_values:
-        # print(i)
-    # print(fruits_group_values)
     return JsonResponse({'status':'view2_success'})
 
 def fruit_view3(request):
-    fruits = Fruits.objects.all()
-    for i in fruits:
-        if int(i.name) < 50000:
-            i.group = 1
-        else:
-            i.group = 2
-        i.save()
-        print(i)
     return JsonResponse({'status':'view3_success'})
 
 
 def fruit_view4(request):
     # fruits_group_values_list = Fruits.objects.filter(group=1).values_list('name', flat=True)
     fruits_group_values = Fruits.objects.filter(group=1).values('name')
-
-    # print(fruits_group_values_list)
-    print(fruits_group_values)
     return JsonResponse({'status':'view4_success'})

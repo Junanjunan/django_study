@@ -8,5 +8,7 @@ urlpatterns = [
     path('fruit3', views.fruit_view3),
     path('fruit4', views.fruit_view4),
 
-    path('shop', views.shopw_view)
+    path('shop', views.shopw_view),
+
+    path('intersection', views.intersection_view),
 ]
