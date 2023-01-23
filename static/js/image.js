@@ -20,11 +20,29 @@ function csrfSafeMethod(method) { // these HTTP methods do not require CSRF prot
 var csrftoken = getCookie('csrftoken');
 
 function sendData(){
+    let formData = new FormData();
+    let banner = document.querySelector('[name="banner"]').files[0];
+    let title = document.querySelector('[name="title"]').value;
+    formData.append("banner", banner);
+    formData.append('title', title);
+
      $.ajaxSetup({
         beforeSend: function (xhr, settings) {
             if (!csrfSafeMethod(settings.type)) {
                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
             }
         }
+    });
+
+    $.ajax({
+        url: '/',
+        method: 'POST',
+        processData: false,
+        contentType: false,
+        enctype: 'multipart/form-data',
+        data: formData,
+        success: function (data) {
+            window.location.reload();
+        },
     });
 }
