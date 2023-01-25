@@ -2,22 +2,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{% static 'js/image.js' %}"></script>
+    <script src="{% static 'js/AjaxRender.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Home</title>
+    <title>Home{{title}}</title>
 </head>
 <body>
   <h1>Home</h1>
-    <input type="file" name="banner">
-    <input type="text" name="title">
-    <button onclick="sendData()">submit</button>
-    {% for sample in samples %}
-    <div>
-      <img src="/media/{{sample.banner}}" alt="sample.title">
-    </div>
-    {% endfor %}
+    {% comment %} <input type="file" name="banner"> {% endcomment %}
+    {% comment %} <input type="text" name="title"> {% endcomment %}
+    {% comment %} <button onclick="sendData()">submit</button> {% endcomment %}
+    {% comment %} {% for sample in samples %} {% endcomment %}
+    {% comment %} <div> {% endcomment %}
+      {% comment %} <img src="/media/{{sample.banner}}" alt="sample.title"> {% endcomment %}
+    {% comment %} </div> {% endcomment %}
+    {% comment %} {% endfor %} {% endcomment %}
+    <button onclick="ajaxRender()">ajax-render</button>
 </body>
 </html>
