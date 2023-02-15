@@ -1,9 +1,44 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Fruits, Shops, ShopFake, ShopFake2
+from .models import Fruits, Shops, ShopFake, ShopFake2, CharTest
 import time
 from django.db.models import Sum, Count, Avg, Min, Max, StdDev, Variance
+from django import forms
+from django.views.generic import FormView
 
+class TestForm(forms.Form):
+    a = forms.CharField(
+        label = "a",
+        max_length = 20
+    )
+
+    b = forms.CharField(
+        label = "b",
+        max_length = 20,
+        required=False
+    )
+
+class FormViewTest(FormView):
+    template_name = 'form_test.html'
+    form_class = TestForm
+    success_url = '/'
+
+    def form_valid(self, form):
+        data = self.request.POST
+        CharTest.objects.create(**data)
+        return super().form_valid(form)
+
+def not_null_test(request):
+    if request.method == 'GET':
+        return render(request, 'test.html')
+    elif request.method == 'POST':
+        data = request.POST
+        data = {k:v for k,v in data.items() if k != 'csrfmiddlewaretoken'}
+        print(data)
+        print("a: ", data.get("a"))
+        print("b: ", data.get("b"))
+        CharTest.objects.create(**data)
+        return JsonResponse(data)
 
 def intersection_view(request):
     # 실습 안했음

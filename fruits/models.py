@@ -21,3 +21,9 @@ class ShopFake(models.Model):
 class ShopFake2(models.Model):
     ok_name = models.IntegerField()
     ok_fruits = models.TextField()
+
+class CharTest(models.Model):
+    a = models.CharField(max_length=10)
+    b = models.CharField(max_length=10)
+    c = models.CharField(max_length=10)
+    d = models.CharField(max_length=10)

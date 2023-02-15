@@ -11,4 +11,8 @@ urlpatterns = [
     path('shop', views.shopw_view),
 
     path('intersection', views.intersection_view),
+
+    path('test', views.not_null_test),
+
+    path('form_test', views.FormViewTest.as_view())
 ]
