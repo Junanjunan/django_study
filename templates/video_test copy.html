@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VideoJS Progress Bar Example</title>
+  <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
+  <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+</head>
+<body>
+  <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="640" height="264" data-setup='{}'>
+    <source src="/static/media/linux.mp4" type='video/mp4'>
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+  </video>
+  <button onclick="clicking()">dddd</button>
+  <script>
+    function clicking(){
+      var myPlayer = videojs('my-video');
+
+myPlayer.src({type: 'video/mp4', src: '/static/media/linux.mp4'});
+myPlayer.ready(function() {
+  // set current time to 2 minutes into the video
+  myPlayer.currentTime(120);
+
+  // get the current time, should be 120 seconds
+  var whereYouAt = myPlayer.currentTime();
+});
+    }
+    
+  </script>
+</body>
+</html>

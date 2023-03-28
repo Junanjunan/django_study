@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Player</title>
+    <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet">
+    <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
+</head>
+<body>
+    <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="640" height="264">
+        <source src="{% url 'media/linux.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <script>
+        var video = videojs('my-video');
+
+        video.on('click', function () {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open('POST', )
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>
